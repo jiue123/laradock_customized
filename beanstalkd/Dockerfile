@@ -13,4 +13,6 @@ VOLUME /var/lib/beanstalkd/data
 
 EXPOSE 11300
 
-CMD ["/usr/bin/beanstalkd"]
+# enable bigger job size
+# CMD ["/usr/bin/beanstalkd"]
+ENTRYPOINT ["/usr/bin/beanstalkd", "-z", "524280"]
