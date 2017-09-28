@@ -290,6 +290,25 @@ RUN if [ ${INSTALL_MSSQL} = true ]; then \
 ;fi
 
 #####################################
+# WkhtmlPdf
+#####################################
+
+ARG INSTALL_WKHTMLTOPDF=true
+RUN if [ ${INSTALL_WKHTMLTOPDF} = true ]; then \
+  apt-get update && \
+  apt-get install -y fonts-droid fontconfig libfontconfig1 libfreetype6 libpng12-0 libx11-dev libjpeg62 libxtst6 libssl1.0.0 libx11-6 libxext6 libxrender1 xfonts-75dpi xfonts-base wget xz-utils && \
+  cd /tmp && \
+  wget -nv https://downloads.wkhtmltopdf.org/0.12/0.12.4/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz -O wkhtmltox.tar.xz && \
+  tar -xaf wkhtmltox.tar.xz && \
+  rm -f wkhtmltox.tar.xz && \
+  mv wkhtmltox/bin/wkhtmlto* /usr/local/bin/ && \
+  apt-get -y install libtidy-dev && \
+  docker-php-ext-install tidy && \
+  apt-get clean && rm -rf /var/lib/apt/lists/* \
+  && chmod +x /usr/local/bin/wkhtmltopdf \
+;fi
+
+#####################################
 # Image optimizers:
 #####################################
 USER root
