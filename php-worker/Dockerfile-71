@@ -22,6 +22,7 @@ RUN apk --update add wget \
   supervisor
 
 RUN docker-php-ext-install mysqli mbstring pdo pdo_mysql mcrypt tokenizer xml
+
 RUN pecl channel-update pecl.php.net && pecl install memcached && docker-php-ext-enable memcached
 
 RUN rm /var/cache/apk/* \
@@ -48,7 +49,16 @@ ENTRYPOINT ["/usr/bin/supervisord", "-n", "-c",  "/etc/supervisord.conf"]
 # If you need to modify this image, feel free to do it right here.
 #
     # -- Your awesome modifications go here -- #
+RUN apk add --update --no-cache libintl \
+    icu \
+    icu-dev \
+    libxml2-dev
+    #zlib1g-dev \
+    #libicu-dev \
+    #g++
 
+RUN docker-php-ext-configure intl && \
+    docker-php-ext-install intl
 
 #
 #--------------------------------------------------------------------------
