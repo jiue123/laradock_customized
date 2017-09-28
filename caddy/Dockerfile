@@ -3,7 +3,10 @@ FROM alpine:3.5
 MAINTAINER Eric Pfeiffer <computerfr33k@users.noreply.github.com>
 
 ENV caddy_version=0.10.5
-ARG plugins=http.git
+ENV CLOUDFLARE_EMAIL=pnghai@gmail.com
+ENV CLOUDFLARE_API_KEY=cfb082414544ee705be05fbe8332497bb19a6
+
+ARG plugins=http.git,tls.dns.cloudflare
 
 LABEL caddy_version="$caddy_version" architecture="amd64"
 
@@ -20,6 +23,6 @@ RUN curl --silent --show-error --fail --location \
 
 EXPOSE 80 443 2015
 
-WORKDIR /var/www/public
+WORKDIR /var/www/mailautoreply-ai-basic/public
 
 CMD ["/usr/bin/caddy", "-conf", "/etc/Caddyfile"]

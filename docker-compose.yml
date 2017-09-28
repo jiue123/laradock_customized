@@ -629,6 +629,8 @@ services:
     laravel-echo-server:
       build:
         context: ./laravel-echo-server
+      volumes_from:
+        - caddy:ro
       volumes:
         - ./laravel-echo-server/laravel-echo-server.json:/app/laravel-echo-server.json:ro
       ports:
@@ -693,4 +695,6 @@ volumes:
   elasticsearch-data:
     driver: "local"
   elasticsearch-plugins:
+    driver: "local"
+  laravel-echo-server:
     driver: "local"
