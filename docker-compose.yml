@@ -657,7 +657,7 @@ services:
       build:
         context: ./docker-tunnel
       volumes:
-        - "${SSH_AUTH_SOCK}:/ssh-agent"
+       - /home/${USER}/.ssh/id_rsa:/id_rsa
       networks:
         - backend
       tty: true
