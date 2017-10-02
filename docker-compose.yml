@@ -651,6 +651,17 @@ services:
         - workspace
       tty: true
 
+### DOCKER SSH TUNNEL ###
+    docker-tunnel:
+      build:
+        context: ./docker-tunnel
+      volumes:
+        - "${SSH_AUTH_SOCK}:/ssh-agent"
+      networks:
+        - backend
+      tty: true
+      command: "*:${SSHTUNNEL_LOCAL_PORT}:localhost:3306 ${SSHTUNNEL_REMOTE_USERNAME}@${SSHTUNNEL_REMOTE_HOST}"
+
 ### Networks Setup ############################################
 
 networks:
