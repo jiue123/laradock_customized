@@ -1,7 +1,12 @@
 {
-	"authHost": "localhost",
+	"authHost": "http://saigon.citynow.vn:17506",
 	"authEndpoint": "/broadcasting/auth",
-	"clients": [],
+	"clients": [
+		{
+			"appId": "07526260da96d525",
+			"key": "cd7b96cff7e9f29f562d676aafa1a867"
+		}
+	],
 	"database": "redis",
 	"databaseConfig": {
 		"redis": {
