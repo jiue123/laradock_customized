@@ -60,6 +60,7 @@ services:
       networks:
         - frontend
         - backend
+      restart: ${WORKSPACE_RESTART_MODE}
 
 ### PHP-FPM Container #######################################
 
@@ -102,6 +103,7 @@ services:
         - PHP_IDE_CONFIG=${PHP_IDE_CONFIG}
       networks:
         - backend
+      restart: ${PHP_FPM_RESTART_MODE}
 
 ### PHP Worker Container #####################################
 
@@ -117,6 +119,7 @@ services:
         - "dockerhost:${DOCKER_HOST_IP}"
       networks:
         - backend
+      restart: ${PHP_WORKER_RESTART_MODE}
 
 ### NGINX Server Container ##################################
 
@@ -274,6 +277,7 @@ services:
         - MYSQL_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
       networks:
         - backend
+      restart: ${MARIADB_RESTART_MODE}
 
 ### PostgreSQL Container ####################################
 
@@ -351,6 +355,7 @@ services:
         - "${REDIS_PORT}:6379"
       networks:
         - backend
+      restart: ${REDIS_RESTART_MODE}
 
 ### Aerospike c Container ###################################
 
@@ -392,6 +397,7 @@ services:
         - php-fpm
       networks:
         - backend
+      restart: ${BEANSTALKD_RESTART_MODE}
 
 ### RabbitMQ Container ######################################
 
@@ -439,6 +445,7 @@ services:
       networks:
         - frontend
         - backend
+      restart: ${CADDY_RESTART_MODE}
 
 ### phpMyAdmin Container ####################################
 
@@ -456,6 +463,7 @@ services:
       networks:
         - frontend
         - backend
+      restart: ${PMA_RESTART_MODE}
 
 ### Adminer Container ####################################
 
@@ -642,6 +650,7 @@ services:
       networks:
         - frontend
         - backend
+      restart: ${LES_RESTART_MODE}
 
 ### AWS EB-CLI ####
     aws:
@@ -663,6 +672,7 @@ services:
         - backend
       tty: true
       command: "*:${SSHTUNNEL_LOCAL_PORT}:localhost:3306 ${SSHTUNNEL_REMOTE_USERNAME}@${SSHTUNNEL_REMOTE_HOST}"
+      restart: ${SSHTUNNEL_RESTART_MODE}
 
 ### Networks Setup ############################################
 
