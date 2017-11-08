@@ -662,17 +662,16 @@ services:
         - workspace
       tty: true
 
-### DOCKER SSH TUNNEL ###
-    docker-tunnel:
+### DOCKER MULTIPLE SSH TUNNELS ###
+    docker-multiple-tunnel:
       build:
-        context: ./docker-tunnel
+        context: ./docker-multiple-tunnel
       volumes:
        - /home/${USER}/.ssh/id_rsa:/id_rsa
       networks:
         - backend
       tty: true
-      command: "*:${SSHTUNNEL_LOCAL_PORT}:localhost:3306 ${SSHTUNNEL_REMOTE_USERNAME}@${SSHTUNNEL_REMOTE_HOST}"
-      restart: ${SSHTUNNEL_RESTART_MODE}
+      restart: ${SSH_MULTIPLE_TUNNEL_RESTART_MODE}
 
 ### Networks Setup ############################################
 
