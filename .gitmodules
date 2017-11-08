@@ -1,3 +1,6 @@
 [submodule "docker-tunnel"]
 	path = docker-tunnel
 	url = https://github.com/pnghai/docker-tunnel.git
+[submodule "docker-multiple-tunnel"]
+	path = docker-multiple-tunnel
+	url = git@bitbucket.org:aikulabinc/docker-multiple-tunnel.git
