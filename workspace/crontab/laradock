@@ -1,4 +1,4 @@
 * * * * * laradock php /var/www/artisan schedule:run >> /dev/null 2>&1
 
 #cron job for getting results from tegaki
-* * * * * php /var/www/image-to-text-convert/artisan schedule:run >> /dev/null 2>&1
+* * * * * laradock php /var/www/image-to-text-convert/artisan schedule:run >> /dev/null 2>&1
