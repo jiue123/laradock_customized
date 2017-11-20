@@ -242,7 +242,7 @@ RUN if [ ${INSTALL_INTL} = true ]; then \
 # GHOSTSCRIPT:
 #####################################
 
-ARG INSTALL_GHOSTSCRIPT=false
+ARG INSTALL_GHOSTSCRIPT=true
 RUN if [ ${INSTALL_GHOSTSCRIPT} = true ]; then \
     # Install the ghostscript extension
     # for PDF editing
@@ -304,7 +304,7 @@ RUN if [ ${INSTALL_IMAGE_OPTIMIZERS} = true ]; then \
 # ImageMagick:
 #####################################
 USER root
-ARG INSTALL_IMAGEMAGICK=false
+ARG INSTALL_IMAGEMAGICK=true
 ENV INSTALL_IMAGEMAGICK ${INSTALL_IMAGEMAGICK}
 RUN if [ ${INSTALL_IMAGEMAGICK} = true ]; then \
     apt-get update -y && \
