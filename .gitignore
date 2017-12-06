@@ -2,5 +2,6 @@
 /logs
 /data
 .env
+.env_backup
 /.project
 .docker-sync
