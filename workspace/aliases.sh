@@ -105,7 +105,8 @@ alias lv="latest-version"
 alias gaa="git add ."
 alias gd="git --no-pager diff"
 alias git-revert="git reset --hard && git clean -df"
-alias gs="git status"
+# Remote "git status" alias gs to avoid overlap with ghostscript command
+# alias gs="git status"
 alias whoops="git reset --hard && git clean -df"
 
 # Create a new directory and enter it

@@ -600,16 +600,6 @@ RUN if [ ${INSTALL_PYTHON} = true ]; then \
 ;fi
 
 #####################################
-# ImageMagick:
-#####################################
-USER root
-ARG INSTALL_IMAGEMAGICK=false
-ENV INSTALL_IMAGEMAGICK ${INSTALL_IMAGEMAGICK}
-RUN if [ ${INSTALL_IMAGEMAGICK} = true ]; then \
-    apt-get install -y --force-yes imagemagick php-imagick \
-;fi
-
-#####################################
 # Terraform:
 #####################################
 USER root
@@ -648,6 +638,26 @@ RUN if [ ${INSTALL_DUSK_DEPS} = true ]; then \
   && unzip chromedriver_linux64.zip \
   && mv chromedriver /usr/local/bin/ \
   && rm chromedriver_linux64.zip \
+;fi
+
+# Install Ghostscript
+ARG INSTALL_GHOSTSCRIPT=true
+RUN if [ ${INSTALL_GHOSTSCRIPT} = true ]; then \
+    # Install the ghostscript extension
+    # for PDF editing
+    apt-get update -yqq \
+    && apt-get install -y \
+    poppler-utils \
+    ghostscript \
+;fi
+
+# Install Imagick
+ARG INSTALL_IMAGICK=true
+RUN if [ ${INSTALL_IMAGICK} = true ]; then \
+    apt-get update -y && \
+    apt-get install -y libmagickwand-dev imagemagick && \
+    pecl install imagick && \
+    echo "extension=imagick.so" >> /etc/php/7.1/cli/php.ini \
 ;fi
 
 #
