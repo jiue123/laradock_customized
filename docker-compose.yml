@@ -674,6 +674,19 @@ services:
       tty: true
       restart: ${SSH_MULTIPLE_TUNNEL_RESTART_MODE}
 
+### Mecab ###
+    mecab:
+      build:
+        context: ./mecab
+      volumes:
+        - ./mecab/source:/var/www/html
+      ports:
+        - 8001:80
+      networks:
+        - backend
+      tty: true
+      restart: ${MECAB}
+
 ### Networks Setup ############################################
 
 networks:
