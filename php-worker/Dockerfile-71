@@ -60,6 +60,12 @@ RUN apk add --update --no-cache libintl \
 RUN docker-php-ext-configure intl && \
     docker-php-ext-install intl
 
+#####################################
+# GMP (GNU Multiple Precision):
+#####################################
+RUN apk add --update --no-cache gmp gmp-dev && \
+    docker-php-ext-install gmp
+
 #
 #--------------------------------------------------------------------------
 # Final Touch
