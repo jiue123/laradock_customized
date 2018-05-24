@@ -650,6 +650,19 @@ RUN if [ ${INSTALL_DUSK_DEPS} = true ]; then \
   && rm chromedriver_linux64.zip \
 ;fi
 
+#####################################
+# GMP (GNU Multiple Precision) :
+#####################################
+USER root
+ARG INSTALL_GMP=false
+ENV INSTALL_GMP ${INSTALL_GMP}
+RUN if [ ${INSTALL_GMP} = true ]; then \
+    # Install the GMP extension
+        apt-get update -yqq && \
+        apt-get install -y libgmp-dev && \
+        apt-get install -y php7.1-gmp \
+;fi
+
 #
 #--------------------------------------------------------------------------
 # Final Touch
