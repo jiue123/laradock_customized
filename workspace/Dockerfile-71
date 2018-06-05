@@ -676,3 +676,7 @@ RUN apt-get clean && \
 
 # Set default work directory
 WORKDIR /var/www
+
+# Touch cron files to prevent hard link errors
+RUN touch -c /etc/crontab /etc/cron.*/*
+
