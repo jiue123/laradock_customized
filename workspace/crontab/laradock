@@ -1,3 +1,4 @@
-* * * * * laradock php /var/www/mailautoreply-ai-basic/artisan schedule:run >> /dev/null 2>&1
-* * * * * laradock for i in {0..10}; do php /var/www/mailautoreply-ai-basic/artisan chatbot:fetch >> /dev/null 2>&1 && sleep 5; done;
+# Do not run crontab on app node (if separate app node and worker node), run only on worker node
+* * * * * root php /var/www/mailautoreply-ai-basic/artisan schedule:run >> /var/log/cron.log 2>&1
+#* * * * * laradock for i in {0..10}; do php /var/www/mailautoreply-ai-basic/artisan chatbot:fetch >> /dev/null 2>&1 && sleep 5; done;
 
