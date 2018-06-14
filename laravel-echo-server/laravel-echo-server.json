@@ -1,5 +1,5 @@
 {
-	"authHost": "http://saigon.citynow.vn:17506",
+	"authHost": "http://robusta.local",
 	"authEndpoint": "/broadcasting/auth",
 	"clients": [
 		{
