@@ -189,6 +189,7 @@ ARG INSTALL_MONGO=false
 ENV INSTALL_MONGO ${INSTALL_MONGO}
 RUN if [ ${INSTALL_MONGO} = true ]; then \
     # Install the mongodb extension
+    pecl channel-update pecl.php.net && \
     pecl install mongodb && \
     echo "extension=mongodb.so" >> /etc/php/5.6/mods-available/mongodb.ini && \
     ln -s /etc/php/5.6/mods-available/mongodb.ini /etc/php/5.6/cli/conf.d/30-mongodb.ini \
@@ -507,6 +508,21 @@ ARG INSTALL_IMAGEMAGICK=false
 ENV INSTALL_IMAGEMAGICK ${INSTALL_IMAGEMAGICK}
 RUN if [ ${INSTALL_IMAGEMAGICK} = true ]; then \
     apt-get install -y --force-yes imagemagick php-imagick \
+;fi
+
+#####################################
+# Terraform:
+#####################################
+USER root
+ARG INSTALL_TERRAFORM=false
+ENV INSTALL_TERRAFORM ${INSTALL_TERRAFORM}
+RUN if [ ${INSTALL_TERRAFORM} = true ]; then \
+    apt-get update -yqq \
+    && apt-get -y install sudo wget unzip \
+    && wget https://releases.hashicorp.com/terraform/0.10.6/terraform_0.10.6_linux_amd64.zip \
+    && unzip terraform_0.10.6_linux_amd64.zip \
+    && mv terraform /usr/local/bin \
+    && rm terraform_0.10.6_linux_amd64.zip \
 ;fi
 
 #
