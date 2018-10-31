@@ -1,0 +1,12 @@
+{
+  "name": "socket_server",
+  "version": "1.0.0",
+  "description": "Socket server",
+  "author": "LePhat <lethanhphat0208@gmail.com>",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "socket.io": "^2.1.1"
+  }
+}

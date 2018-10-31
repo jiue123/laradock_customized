@@ -688,6 +688,17 @@ services:
         - backend
       tty: true
       restart: ${MECAB}
+### Socket IO ###
+    socket-server:
+      build:
+        context: ./socket-server
+      volumes:
+        - ./socket-server/server.js:/usr/src/app/server.js
+      ports:
+        - 8002:80
+      networks:
+        - backend
+      tty: true
 
 ### Networks Setup ############################################
 
